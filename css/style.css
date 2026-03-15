@@ -210,6 +210,83 @@ main.page {
   box-shadow: 0 0 14px rgba(120, 170, 255, 0.3);
 }
 
+.click-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.click-effect {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+}
+
+.click-star {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  left: 0;
+  top: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(120, 180, 255, 0.8) 60%, rgba(120, 180, 255, 0.2));
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  animation: star-burst 650ms ease-out forwards;
+  filter: drop-shadow(0 0 10px rgba(120, 180, 255, 0.7));
+}
+
+.click-sparkle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%);
+  animation: sparkle-fly 600ms ease-out forwards;
+  animation-delay: var(--delay);
+  filter: drop-shadow(0 0 6px rgba(160, 210, 255, 0.8));
+}
+
+@keyframes star-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.25) rotate(0deg);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.6) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.6);
+    opacity: 0;
+  }
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
