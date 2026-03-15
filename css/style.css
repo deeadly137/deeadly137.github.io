@@ -84,6 +84,14 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+  font-family: "Determination";
+  src: url("../fonts/determination.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --button-size: clamp(170px, 24vmin, 260px);
   --button-gap: clamp(16px, 4vmin, 40px);
@@ -123,6 +131,40 @@ main.page {
   text-align: center;
 }
 
+.welcome-hero {
+  position: relative;
+  width: min(26vw, 173px);
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.welcome-hero img {
+  width: 100%;
+  height: auto;
+  opacity: 0.05;
+  display: block;
+  transform: translateY(-12px);
+  border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.welcome-text {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  width: max-content;
+  font-family: "Determination", "Lucida Console", "Courier New", monospace;
+  font-size: clamp(22px, 4vmin, 36px);
+  letter-spacing: 0.06em;
+  color: #f6f7ff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  padding: 18px;
+}
+
 .button-grid {
   display: flex;
   flex-wrap: wrap;
@@ -160,7 +202,6 @@ main.page {
   height: 85%;
   object-fit: contain;
   image-rendering: pixelated;
-  image-rendering: crisp-edges;
   filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.35));
 }
 
@@ -186,7 +227,6 @@ main.page {
   height: clamp(180px, 32vmin, 280px);
   object-fit: contain;
   image-rendering: pixelated;
-  image-rendering: crisp-edges;
 }
 
 .back-button {
@@ -249,15 +289,19 @@ main.page {
 }
 
 .click-sparkle {
+  --dx: 0px;
+  --dy: 0px;
+  --size: 4px;
+  --delay: 0ms;
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--size);
-  height: var(--size);
+  width: var(--size, 4px);
+  height: var(--size, 4px);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%);
   animation: sparkle-fly 600ms ease-out forwards;
-  animation-delay: var(--delay);
+  animation-delay: var(--delay, 0ms);
   filter: drop-shadow(0 0 6px rgba(160, 210, 255, 0.8));
 }
 
@@ -282,7 +326,7 @@ main.page {
     opacity: 1;
   }
   100% {
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.6);
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(0.6);
     opacity: 0;
   }
 }
