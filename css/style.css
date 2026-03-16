@@ -229,6 +229,18 @@ main.page {
   image-rendering: pixelated;
 }
 
+.noivern-corner {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: clamp(120px, 18vmin, 220px);
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  image-rendering: pixelated;
+  z-index: 2;
+}
+
 .back-button {
   display: inline-flex;
   align-items: center;
