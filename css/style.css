@@ -235,7 +235,7 @@ main.page {
   bottom: 24px;
   width: clamp(120px, 18vmin, 220px);
   height: auto;
-  opacity: 0;
+  opacity: 0.999;
   pointer-events: none;
   image-rendering: pixelated;
   z-index: 2;
