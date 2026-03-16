@@ -57,6 +57,10 @@
   const particleLayer = document.createElement("div");
   particleLayer.className = "noibat-particle-layer";
   document.body.appendChild(particleLayer);
+  const noibatSound = new Audio("sound/noibat.mp3");
+  noibatSound.volume = 0.45;
+  const noivernSound = new Audio("sound/noivern.mp3");
+  noivernSound.volume = 0.45;
   let clicks = 0;
 
   icon.addEventListener("click", (event) => {
@@ -89,6 +93,8 @@
     clicks += 1;
     if (clicks >= 3) {
       icon.dataset.swapped = "true";
+      noibatSound.currentTime = 0;
+      noibatSound.play().catch(() => {});
       if (stage) {
         const existing = stage.querySelector(".evolve-orb");
         if (existing) {
@@ -114,6 +120,11 @@
           nameEl.textContent = "Noivern";
         }
       }, 2000);
+
+      window.setTimeout(() => {
+        noivernSound.currentTime = 0;
+        noivernSound.play().catch(() => {});
+      }, 2800);
     }
   });
 })();
