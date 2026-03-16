@@ -430,17 +430,11 @@ main.page {
   0% {
     transform: translate(0, 120vh);
   }
-  25% {
-    transform: translate(var(--sway), 70vh);
-  }
   50% {
-    transform: translate(0, 30vh);
-  }
-  75% {
-    transform: translate(calc(var(--sway) * -1), -10vh);
+    transform: translate(var(--drift), 30vh);
   }
   100% {
-    transform: translate(0, -40vh);
+    transform: translate(var(--drift), -40vh);
   }
 }
 
