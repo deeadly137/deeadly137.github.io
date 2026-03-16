@@ -63,7 +63,7 @@
   noivernSound.volume = 0.45;
   let clicks = 0;
 
-  icon.addEventListener("click", (event) => {
+  icon.addEventListener("click", () => {
     if (icon.dataset.swapped === "true") {
       return;
     }
@@ -127,4 +127,56 @@
       }, 2800);
     }
   });
+})();
+
+(() => {
+  const container = document.querySelector(".heart-cubes");
+  if (!container) {
+    return;
+  }
+
+  const spawnCube = () => {
+    const width = window.innerWidth;
+    const laneWidth = width * 0.22;
+    const margin = width * 0.03;
+    const size = 50 + Math.random() * 60;
+    const duration = 12 + Math.random() * 10;
+    const isLeft = Math.random() < 0.5;
+    const laneStart = isLeft ? margin : width - laneWidth - margin;
+    const laneEnd = isLeft ? laneStart + laneWidth : width - margin;
+    const maxStart = Math.max(0, laneEnd - laneStart - size);
+    const startX = laneStart + Math.random() * maxStart;
+    const maxDrift = laneWidth * 0.35;
+    let drift = (Math.random() * 2 - 1) * maxDrift;
+    if (startX + drift < laneStart) {
+      drift = laneStart - startX;
+    }
+    if (startX + drift > laneEnd - size) {
+      drift = laneEnd - size - startX;
+    }
+
+    const cube = document.createElement("div");
+    cube.className = "cube";
+    cube.style.left = `${startX}px`;
+    cube.style.setProperty("--size", `${size}px`);
+    cube.style.setProperty("--drift", `${drift}px`);
+    cube.style.setProperty("--duration", `${duration}s`);
+    container.appendChild(cube);
+
+    window.setTimeout(() => {
+      cube.remove();
+    }, duration * 1000);
+  };
+
+  for (let i = 0; i < 6; i += 1) {
+    spawnCube();
+  }
+
+  const schedule = () => {
+    spawnCube();
+    const delay = 600 + Math.random() * 800;
+    window.setTimeout(schedule, delay);
+  };
+
+  schedule();
 })();

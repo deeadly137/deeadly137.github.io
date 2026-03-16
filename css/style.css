@@ -121,6 +121,14 @@ body::before {
   z-index: 0;
 }
 
+body.heart-page {
+  background: #000000;
+}
+
+body.heart-page::before {
+  display: none;
+}
+
 main.page {
   height: 100vh;
   display: grid;
@@ -173,6 +181,31 @@ main.page {
   justify-content: center;
   gap: var(--button-gap);
   transform: translateY(-6vh);
+}
+
+.heart-cubes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart-cubes .cube {
+  --duration: 16s;
+  --drift: 0px;
+  position: absolute;
+  left: 0;
+  bottom: calc(-1 * var(--size));
+  width: var(--size, 80px);
+  height: var(--size, 80px);
+  background: #7a2cff;
+  box-shadow:
+    inset -10px -10px 0 rgba(0, 0, 0, 0.2),
+    0 0 25px rgba(122, 44, 255, 0.35);
+  image-rendering: pixelated;
+  animation: cube-float var(--duration, 16s) linear forwards;
+  will-change: transform;
 }
 
 .image-button {
@@ -392,6 +425,18 @@ main.page {
   100% {
     transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4);
     opacity: 0;
+  }
+}
+
+@keyframes cube-float {
+  0% {
+    transform: translate(0, 120vh);
+  }
+  50% {
+    transform: translate(var(--drift, 0px), 30vh);
+  }
+  100% {
+    transform: translate(var(--drift, 0px), calc(-130vh - var(--size, 80px)));
   }
 }
 
