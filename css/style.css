@@ -107,6 +107,7 @@ body {
   font-family: "Lucida Console", "Courier New", monospace;
   letter-spacing: 0.02em;
   background: #0a0f14 url("../img/wallpaper.png") center / cover no-repeat fixed;
+  overflow: hidden;
 }
 
 body::before {
@@ -121,11 +122,11 @@ body::before {
 }
 
 main.page {
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   place-items: center;
   gap: clamp(16px, 3vmin, 32px);
-  padding: clamp(20px, 4vmin, 48px);
+  padding: clamp(16px, 3vmin, 32px);
   position: relative;
   z-index: 1;
   text-align: center;
@@ -171,6 +172,7 @@ main.page {
   align-items: center;
   justify-content: center;
   gap: var(--button-gap);
+  transform: translateY(-6vh);
 }
 
 .image-button {
